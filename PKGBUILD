@@ -5,7 +5,7 @@
 pkgname=supertux-git
 _pkgname=${pkgname//-git/}
 pkgver=0.5.0.rc.2.16
-_pkgver=0.5.0-rc.2
+_pkgver=${pkgver//.rc/-rc}
 pkgrel=1
 pkgdesc="A classic 2D jump'n run sidescroller game in a style similar to the original SuperMario game"
 url='http://supertux.lethargik.org/'
