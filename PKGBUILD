@@ -3,7 +3,9 @@
 # Contributor: Patrick Bartels <p4ddy.b@gmail.com>
 
 pkgname=supertux-git
-pkgver=7292.f24d3bc
+_pkgname=${pkgname//-git/}
+pkgver=0.5.0.rc.2.16
+_pkgver=0.5.0-rc.2
 pkgrel=1
 pkgdesc="A classic 2D jump'n run sidescroller game in a style similar to the original SuperMario game"
 url='http://supertux.lethargik.org/'
@@ -32,8 +34,12 @@ sha512sums=('SKIP'
             'SKIP')
 
 pkgver() {
-  cd supertux
-  echo $(git rev-list --count master).$(git rev-parse --short master)
+  cd $srcdir/${_pkgname}
+  _basever="$(git describe --tags `git rev-list --tags --max-count=1`)"
+  _baseveradj="${_basever//v/}"
+  _baseveradj="${_baseveradj//-/.}"
+  _commitno="$(git rev-list --count ${_basever}..HEAD)"
+  printf "${_baseveradj}.${_commitno}"
 }
 
 prepare() {
@@ -50,7 +56,7 @@ prepare() {
   git submodule update
 
   sed -i '/curl\/types.h/d' src/addon/addon_manager.cpp
-  sed -i '1i#include <cstddef>' src/supertux/screen_manager.hpp  
+  sed -i '1i#include <cstddef>' src/supertux/screen_manager.hpp
 }
 
 build() {
