@@ -2,9 +2,9 @@
 # Original Maintainer: Hakim <acrox999 at gmail dot com>
 # Contributor: Patrick Bartels <p4ddy.b@gmail.com>
 
-pkgname=supertux-git
+pkgname=supertux
 _pkgname=${pkgname//-git/}
-pkgver=0.5.0.4
+pkgver=0.5.1.295
 _pkgver=${pkgver//.rc/-rc}
 pkgrel=1
 pkgdesc="A classic 2D jump'n run sidescroller game in a style similar to the original SuperMario game"
